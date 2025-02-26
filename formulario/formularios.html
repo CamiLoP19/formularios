@@ -7,65 +7,84 @@
     <link rel="stylesheet" href="formularios.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Registro de persona</h1>
-        <form id="formpersona">
-            <fieldset>  
-                <legend>Datos personales</legend>
-                <label for="Nombre">Nombre:</label>
-                <input type="text" name="Nombre" id="Nombre" required placeholder="Digite su nombre"><br> 
-                <label for="Apellido">Apellido:</label>
-                <input type="text" name="Apellido" id="Apellido" required placeholder="Digite su Apellido"><br>
-                <label for="Edad">Edad:</label>
-                <input type="number" name="Edad" id="Edad" required min="18" placeholder="Digite su Edad"><br>
-                <label for="Genero">Género:</label>
-                <select name="genero" id="genero">
-                    <option value="Masculino">Masculino</option>
-                    <option value="Femenino">Femenino</option>
-                    <option value="Otros">Otros</option>
-                </select> 
-            </fieldset>
-            <fieldset>
-                <legend>Datos de contacto</legend>
-                <label for="Email">Email:</label>
-                <input type="email" name="Email" id="Email" required placeholder="Digite su correo"><br> 
-                <label for="Telefono">Teléfono:</label>
-                <input type="tel" name="Telefono" id="Telefono" required placeholder="Digite su Teléfono"><br> 
-            </fieldset>
-            <fieldset>
-                <legend>Datos adicionales</legend>
-                <label for="Direccion">Dirección:</label>
-                <input type="text" name="Direccion" id="Direccion" required placeholder="Digite su Dirección"><br> 
-                <label for="nacimiento">Fecha de nacimiento:</label>
-                <input type="date" name="nacimiento" id="nacimiento" required><br> 
-            </fieldset>
-            <input type="submit" value="Guardar">
-        </form>
-    </div>
+    <div class="main-container">
+        <div class="container">
+            <h1>Registro de persona</h1>
+            <form id="formpersona">
+                <fieldset>  
+                    <legend>Datos personales</legend>
+                    <label for="Nombre">Nombre:</label>
+                    <input type="text" name="Nombre" id="Nombre" required placeholder="Digite su nombre"><br> 
+                    <label for="Apellido">Apellido:</label>
+                    <input type="text" name="Apellido" id="Apellido" required placeholder="Digite su Apellido"><br>
+                    <label for="Edad">Edad:</label>
+                    <input type="number" name="Edad" id="Edad" required min="18" placeholder="Digite su Edad"><br>
+                    <label for="Genero">Género:</label>
+                    <select name="genero" id="genero">
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Otros">Otros</option>
+                    </select> 
+                </fieldset>
+                <fieldset>
+                    <legend>Datos de contacto</legend>
+                    <label for="Email">Email:</label>
+                    <input type="email" name="Email" id="Email" required placeholder="Digite su correo"><br> 
+                    <label for="Telefono">Teléfono:</label>
+                    <input type="tel" name="Telefono" id="Telefono" required placeholder="Digite su Teléfono"><br> 
+                </fieldset>
+                <fieldset>
+                    <legend>Datos adicionales</legend>
+                    <label for="Direccion">Dirección:</label>
+                    <input type="text" name="Direccion" id="Direccion" required placeholder="Digite su Dirección"><br> 
+                    <label for="nacimiento">Fecha de nacimiento:</label>
+                    <input type="date" name="nacimiento" id="nacimiento" required><br> 
 
-    <table class="modelotbl" border="1">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Edad</th>
-                <th>Género</th>
-                <th>Email</th>
-                <th>Teléfono</th>
-                <th>Dirección</th>
-                <th>Fecha de nacimiento</th>
-            </tr>
-        </thead>
-        <tbody id="tabla-body">
-        </tbody>
-    </table>
+                    <label>¿Acepta los términos y condiciones?</label><br>
+                    <input type="radio" id="acepto" name="aceptar" value="Sí" required>
+                    <label for="acepto">Sí</label>
+                    <input type="radio" id="noacepto" name="aceptar" value="No" required>
+                    <label for="noacepto">No</label><br>
+
+                    <label for="boletin">Suscribirse al boletín de noticias:</label>
+                    <input type="checkbox" id="boletin" name="boletin">
+                </fieldset>
+                <input type="submit" value="Guardar">
+            </form>
+        </div>
+
+        <div class="container1">
+            <h1>Lista de personas</h1>
+            <table class="modelotbl" border="1">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Edad</th>
+                        <th>Género</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Dirección</th>
+                        <th>Fecha de nacimiento</th>
+                        <th>Acepta términos</th>
+                        <th>Boletín</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-body">
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <script>
         const personas = [];
         document.getElementById("formpersona").addEventListener("submit", function(event) {
             event.preventDefault();
-            
-            
+            const aceptoTerminos = document.querySelector('input[name="aceptar"]:checked');
+            if (!aceptoTerminos || aceptoTerminos.value === "No") {
+                alert("Debes aceptar los términos y condiciones para continuar.");
+                return; 
+            }
             const persona = {
                 nombre: document.getElementById("Nombre").value,
                 apellido: document.getElementById("Apellido").value,
@@ -74,7 +93,9 @@
                 email: document.getElementById("Email").value,
                 telefono: document.getElementById("Telefono").value,
                 direccion: document.getElementById("Direccion").value,
-                fechadenacimiento: document.getElementById("nacimiento").value 
+                fechadenacimiento: document.getElementById("nacimiento").value,
+                aceptaTerminos: document.querySelector('input[name="aceptar"]:checked').value,
+                boletin: document.getElementById("boletin").checked ? "Sí" : "No"
             };
             personas.push(persona);
             actualizarTabla();
@@ -95,6 +116,8 @@
                                 <td>${persona.telefono}</td>
                                 <td>${persona.direccion}</td>
                                 <td>${persona.fechadenacimiento}</td>
+                                <td>${persona.aceptaTerminos}</td>
+                                <td>${persona.boletin}</td>
                             </tr>`;
                 tbody.innerHTML += fila;
             });
@@ -102,4 +125,3 @@
     </script>
 </body>
 </html>
-

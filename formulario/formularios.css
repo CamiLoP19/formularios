@@ -1,36 +1,55 @@
 body {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
 }
-.container{
 
-    width: 500px;
-    max-width: 600 px;
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.container {
+    width: 45%;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-color: #fff;
 }
+
+.container1 {
+    width: 45%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-color: #fff;
+}
+
 label {
-    display:block;
+    display: block;
     font-weight: bold;
     margin-top: 10px;
-
-
+    width: 100%;
 }
-input,select,textarea{
 
+input, select, textarea {
     width: 200px;
     padding: 12px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-modelotbl,th, td {
+
+.modelotbl, th, td {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
     border: 1px solid #1a1919;
 }
